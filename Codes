@@ -1,0 +1,17 @@
+# Calculate the 50-day moving average for each stock
+moving_avg_50 = close_data.rolling(window=50).mean()
+
+# Plot the closing prices and 50-day moving average
+plt.figure(figsize=(12, 8))
+
+for ticker in tickers:
+    plt.plot(close_data.index, close_data[ticker], label=f'{ticker} Close Price')
+    plt.plot(moving_avg_50.index, moving_avg_50[ticker], label=f'{ticker} 50-Day Moving Avg', linestyle='--')
+
+plt.title('Stock Price with 50-Day Moving Average (2020-2025)')
+plt.xlabel('Date')
+plt.ylabel('Price in $')
+plt.legend(loc='upper left')
+plt.grid(True)
+plt.savefig('stock_price_with_moving_avg.png', dpi=300)
+plt.show()
